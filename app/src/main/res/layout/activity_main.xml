@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Controller.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/result_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/win"
+            android:fontFamily="@font/b_yekan"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/finish_game_lay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:visibility="visible">
+
+        <ImageButton
+            android:id="@+id/btn_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/refresh" />
+
+        <TextView
+            android:id="@+id/score_num"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#EDE2DF"
+            android:fontFamily="@font/b_yekan"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="#EDE2DF"
+            android:fontFamily="@font/b_yekan"
+            android:padding="5dp"
+            android:text="@string/score"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/beauty_yellow"
+        android:fontFamily="@font/b_yekan"
+        android:gravity="center_horizontal"
+        android:padding="6dp"
+        android:text="@string/question_africa"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:id="@+id/check_lay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <!--        <CheckBox
+            android:id="@+id/false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@drawable/ic_close"
+            tools:visibility="gone" />
+
+        <CheckBox
+            android:id="@+id/true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@drawable/ic_check"
+            tools:visibility="gone" />-->
+
+        <ImageButton
+            android:id="@+id/btn_true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/ic_check"
+            tools:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/btn_false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/ic_close"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/next_prev_lay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/ic_next" />
+
+        <ImageButton
+            android:id="@+id/btn_prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/ic_prev" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/first_last_lay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_last_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/ic_last_question" />
+
+        <ImageButton
+            android:id="@+id/btn_first_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/ic_first_question" />
+    </LinearLayout>
+
+</LinearLayout>
