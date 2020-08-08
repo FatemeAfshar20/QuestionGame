@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Controller.MainActivity">
+    tools:context=".Controller.QuestionGameActivity">
 
     <LinearLayout
         android:id="@+id/result"
@@ -77,7 +77,7 @@
         android:padding="6dp"
         android:text="@string/question_africa"
         android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:textSize="30sp" />
 
     <LinearLayout
         android:id="@+id/check_lay"
@@ -173,5 +173,11 @@
         android:fontFamily="@font/b_yekan"
         android:text="تقلب"
         android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="تنظیمات" />
 
 </LinearLayout>

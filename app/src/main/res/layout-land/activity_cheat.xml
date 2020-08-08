@@ -10,15 +10,15 @@
 
     <TextView
         android:id="@+id/txt_warn_question"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/warn_question"
-        android:fontFamily="@font/b_yekan"
-        android:textColor="@color/black"
-        android:textSize="18sp"
         android:background="@color/beauty_pink_light"
+        android:fontFamily="@font/b_yekan"
+        android:gravity="center"
         android:padding="10sp"
-        />
+        android:text="@string/warn_question"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/answer"

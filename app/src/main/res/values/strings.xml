@@ -13,4 +13,8 @@
     <string name="score_num"></string>
     <string name="win">تبریک شما برنده شدید</string>
     <string name="fail">احتیاج به تلاش بیشتر داری</string>
+    <string name="warn_question">آیا اطمینان دارید که میخواهید پاسخ را ببینید؟</string>
+    <string name="dont_judge">و خداوند تقلب کنندگان را دوست ندارد:)))</string>
+    <string name="btn_cheat">مشاهده پاسخ</string>
+    <string name="go_back">بازگشت</string>
 </resources>

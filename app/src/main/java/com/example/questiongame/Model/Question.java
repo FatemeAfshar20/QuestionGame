@@ -2,8 +2,17 @@ package com.example.questiongame.Model;
 
 public class Question {
     private int mQuestionIn;
-    private boolean mIsTrue;
+    private boolean mAnswerCheck;
     private boolean mIsAnswer;
+    private  boolean mIsCheat;
+
+    public boolean isCheat() {
+        return mIsCheat;
+    }
+
+    public void setCheat(boolean cheat) {
+        mIsCheat = cheat;
+    }
 
     public int getQuestionIn() {
         return mQuestionIn;
@@ -13,12 +22,12 @@ public class Question {
         mQuestionIn = questionIn;
     }
 
-    public boolean isTrue() {
-        return mIsTrue;
+    public boolean answerCheck() {
+        return mAnswerCheck;
     }
 
-    public void setTrue(boolean aTrue) {
-        mIsTrue = aTrue;
+    public void setAnswerCheck(boolean answerCheck) {
+        mAnswerCheck = answerCheck;
     }
 
     public boolean isAnswer() {
@@ -29,10 +38,11 @@ public class Question {
         mIsAnswer = answer;
     }
 
-    public Question(int questionIn, boolean isTrue, boolean isAnswer) {
+    public Question(int questionIn, boolean isTrue, boolean isAnswer,boolean isCheat) {
         mQuestionIn = questionIn;
-        mIsTrue = isTrue;
+        mAnswerCheck = isTrue;
         mIsAnswer = isAnswer;
+        mIsCheat=isCheat;
     }
 
     public Question() {
