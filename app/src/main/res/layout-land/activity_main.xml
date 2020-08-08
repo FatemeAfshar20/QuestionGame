@@ -20,7 +20,6 @@
             android:id="@+id/result_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:fontFamily="@font/b_yekan"
             android:text="@string/win"
             android:textColor="@color/black"
@@ -72,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:background="@color/beauty_yellow"
         android:fontFamily="@font/b_yekan"
         android:gravity="center_horizontal"
@@ -86,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="15dp"
+        android:layout_margin="30dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -178,8 +177,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
+        android:background="#FFEB3B"
         android:fontFamily="@font/b_yekan"
-        android:text="تقلب"
+        android:text="@string/cheat"
         android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/btn_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:srcCompat="@drawable/ic_setting"
+        android:layout_margin="15sp"
+        />
 
 </FrameLayout>

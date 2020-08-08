@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#D81515"
-            android:text="@string/btn_cheat"
+            android:text="@string/cheat_answer"
             android:fontFamily="@font/b_yekan"
             android:textColor="#FFF"
             android:layout_margin="5dp"

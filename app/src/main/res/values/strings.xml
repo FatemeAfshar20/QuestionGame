@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">QuestionGame</string>
-    <string name="start">شروع</string>
     <string name="question_australia">استرالیا بزرگ ترین قاره جهان است.</string>
     <string name="question_oceans">اقیانوس آرام بزرگ ترین اقیانوس جهان است.</string>
     <string name="question_mideast">همه کشورهای خاورمیانه عرب زبان هستند.</string>
@@ -14,7 +13,8 @@
     <string name="win">تبریک شما برنده شدید</string>
     <string name="fail">احتیاج به تلاش بیشتر داری</string>
     <string name="warn_question">آیا اطمینان دارید که میخواهید پاسخ را ببینید؟</string>
-    <string name="dont_judge">و خداوند تقلب کنندگان را دوست ندارد:)))</string>
-    <string name="btn_cheat">مشاهده پاسخ</string>
+    <string name="do_not_judge">و خداوند تقلب کنندگان را دوست ندارد:)))</string>
+    <string name="cheat_answer">مشاهده پاسخ</string>
     <string name="go_back">بازگشت</string>
+    <string name="cheat">تقلب</string>
 </resources>
