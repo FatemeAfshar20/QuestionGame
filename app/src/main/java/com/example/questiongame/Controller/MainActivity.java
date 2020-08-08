@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.example.questiongame.R;
 
 
 public class MainActivity extends AppCompatActivity {
+
     private Question[] mQuestions = {
             new Question(R.string.question_africa, true, false),
             new Question(R.string.question_asia, false, false),
@@ -25,26 +27,60 @@ public class MainActivity extends AppCompatActivity {
     };
     int mCurIndex;
     TextView mTextView,mTextViewScore,mResultView;
-    ImageButton mBtnTrue, mBtnFalse, mBtnNext, mBtnPrev, mBtnLast, mBtnFirst,mBtnRefresh;
-    LinearLayout mCheckLay,mNextPrevLay,mFirstLastLay,mFinishGameLay,mResultLay;
+    ImageButton mBtnTrue, mBtnFalse, mBtnNext, mBtnPrev, mBtnLast, mBtnFirst,mBtnRefresh,mBtnCheat;
+    ViewGroup mCheckLay,mNextPrevLay,mFirstLastLay,mFinishGameLay,mResultLay;
     int mScoreNumber =0;
     int mAnswerNum =0;
-    private static final String TAG = "QuizActivity";
+    private static final String TAG = "QuestionGame";
     private static final String BUNDLE_KEY_CURRENT_INDEX = "currentIndex";
+    private static final String BUNDLE_KEY_ANSWER_NUM = "Answer number";
+    private static final String BUNDLE_KEY_SCORE_NUM = "Score number";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        if (savedInstanceState != null) {
-            Log.d(TAG, "savedInstanceState: " + savedInstanceState);
+        if(savedInstanceState!=null) {
+            Log.d(TAG, "this is question game   " + savedInstanceState);
+           mCurIndex= savedInstanceState.getInt(BUNDLE_KEY_CURRENT_INDEX,0);
+           mAnswerNum=savedInstanceState.getInt(BUNDLE_KEY_ANSWER_NUM,0);
+           mScoreNumber=savedInstanceState.getInt(BUNDLE_KEY_SCORE_NUM,0);
 
-            mCurIndex = savedInstanceState.getInt(BUNDLE_KEY_CURRENT_INDEX, 0);
         } else
-            Log.d(TAG, "savedInstanceState is NULL!!");
+            Log.d(TAG,"is null!   "+savedInstanceState);
+        setContentView(R.layout.activity_main);
         findElem();
         setListener();
+        Log.d(TAG,"onCreate");
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG,"onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG,"onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG,"onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG,"onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG,"onDestroy");
     }
 
     private void findElem() {
@@ -65,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         mResultLay=findViewById(R.id.result);
         mResultLay.setVisibility(View.GONE);
         mResultView=findViewById(R.id.result_text);
+        mBtnCheat=findViewById(R.id.btn_cheat);
     }
 
     private void setListener() {
@@ -188,44 +225,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(BUNDLE_KEY_CURRENT_INDEX, mCurIndex);
-        outState.putInt("Score",mScoreNumber);
-        outState.putInt("Buttons",R.id.btn_next);
-        outState.putInt("Buttons",R.id.btn_prev);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        Log.d(TAG, "onStart: " + mCurIndex);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        Log.d(TAG, "onResume: " + mCurIndex);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        Log.d(TAG, "onPause: " + mCurIndex);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        Log.d(TAG, "onStop: " + mCurIndex);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        Log.d(TAG, "onDestory: " + mCurIndex);
+        outState.putInt(BUNDLE_KEY_ANSWER_NUM,mAnswerNum);
+        outState.putInt(BUNDLE_KEY_SCORE_NUM,mScoreNumber);
     }
 
 }
