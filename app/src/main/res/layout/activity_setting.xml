@@ -3,41 +3,182 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="right|top"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Controller.Setting">
 
-    <TextView
-        android:id="@+id/change_font_set"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="تغییر فونت"
-        android:textSize="20sp"
-        android:fontFamily="@font/b_yekan"
-        android:textColor="@color/black"
-        android:padding="10sp"
-        android:background="@color/beauty_yellow"
-        android:layout_marginRight="10dp"
+        android:layout_gravity="right|top"
         android:layout_marginTop="10dp"
-        />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_small_font"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="small" />
+        <Button
+            android:id="@+id/btn_small_font"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/beauty_yellow"
+            android:fontFamily="@font/segoe_ui"
+            android:text="@string/small_font"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btn_medium_font"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="medium" />
+        <Button
+            android:id="@+id/btn_medium_font"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/beauty_yellow"
+            android:fontFamily="@font/segoe_ui"
+            android:text="@string/medium_font"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btn_large_font"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btn_large_font"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/beauty_yellow"
+            android:fontFamily="@font/segoe_ui"
+            android:text="@string/large_font"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/change_font_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/black"
+            android:fontFamily="@font/b_yekan"
+            android:padding="8sp"
+            android:text="@string/set_font_txt"
+            android:textColor="@color/beauty_yellow"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="large" />
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/beauty_so_pl"
+             />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/beauty_pink_light"
+           />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/beauty_pink"
+            />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/beauty_purple_light"
+             />
+
+        <TextView
+            android:id="@+id/change_bg_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/black"
+            android:fontFamily="@font/b_yekan"
+            android:padding="8sp"
+            android:text="@string/set_change_background_txt"
+            android:textColor="@color/beauty_yellow"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="vertical"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/hide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:fontFamily="@font/b_yekan"
+            android:padding="8sp"
+            android:text="@string/set_change_hidden_state_txt"
+            android:textColor="@color/beauty_yellow"
+            android:textSize="15sp" />
+
+        <RadioButton
+            android:id="@+id/raidio_hide_check_lay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/b_yekan"
+            android:textColor="@color/black"
+            android:text="@string/radio_hide_check" />
+
+        <RadioButton
+            android:id="@+id/raidio_hide_np_lay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/b_yekan"
+            android:textColor="@color/black"
+            android:text="@string/radio_hide_np" />
+
+        <RadioButton
+            android:id="@+id/raidio_hide_fl_lay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/b_yekan"
+            android:textColor="@color/black"
+            android:text="@string/radio_hide_fl" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp">
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="10sp"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/ic_go_back" />
+    </LinearLayout>
+
 </LinearLayout>

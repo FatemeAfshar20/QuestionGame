@@ -77,7 +77,7 @@
         android:padding="6dp"
         android:text="@string/question_africa"
         android:textColor="@color/black"
-        android:textSize="30sp" />
+        android:textSize="20sp" />
 
     <LinearLayout
         android:id="@+id/check_lay"
@@ -170,9 +170,12 @@
         android:id="@+id/btn_cheat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#FFEB3B"
         android:fontFamily="@font/b_yekan"
-        android:text="تقلب"
-        android:textSize="20sp" />
+        android:text="@string/cheat"
+        android:textSize="20sp"
+        android:layout_margin="10sp"
+        />
 
     <ImageButton
         android:id="@+id/btn_setting"

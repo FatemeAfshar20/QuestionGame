@@ -17,4 +17,13 @@
     <string name="cheat_answer">مشاهده پاسخ</string>
     <string name="go_back">بازگشت</string>
     <string name="cheat">تقلب</string>
+    <string name="large_font">LARGE</string>
+    <string name="medium_font">MEDIUM</string>
+    <string name="small_font">SMALL</string>
+    <string name="set_font_txt">تغییر فونت</string>
+    <string name="set_change_background_txt">تغییر پس زمینه</string>
+    <string name="set_change_hidden_state_txt">غیر فعال کردن</string>
+    <string name="radio_hide_check">دکمه های درست و نادرست</string>
+    <string name="radio_hide_np">دکمه های قبل و بعد</string>
+    <string name="radio_hide_fl">دکمه های رفتن به اولین و آخرین سوال</string>
 </resources>

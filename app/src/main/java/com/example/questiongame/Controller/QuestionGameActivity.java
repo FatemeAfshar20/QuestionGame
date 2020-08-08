@@ -54,60 +54,11 @@ public class QuestionGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState != null) {
-
-            Log.d(TAG, "this is question game   " + savedInstanceState);
-            mCurIndex = savedInstanceState.getInt(BUNDLE_KEY_CURRENT_INDEX, 0);
-            mAnswerNum = savedInstanceState.getInt(BUNDLE_KEY_ANSWER_NUM, 0);
-            mScoreNumber = savedInstanceState.getInt(BUNDLE_KEY_SCORE_NUM, 0);
-            mIsCheat = savedInstanceState.getBoolean(BUNDLE_KEY_IS_CHEAT_BOOL, false);
-            mQuestions[mCurIndex].setCheat(mIsCheat);
-
-            boolean[] answerState = savedInstanceState.getBooleanArray(ANSWER);
-            for (int i = 0; i < mQuestions.length; i++) {
-                mQuestions[i].setAnswer(answerState[i]);
-            }
-
-            boolean[] cheatState = savedInstanceState.getBooleanArray(IS_CHEAT);
-            for (int i = 0; i < mQuestions.length; i++) {
-                mQuestions[i].setCheat(cheatState[i]);
-            }
-        } else
-            Log.d(TAG, "is null!   " + savedInstanceState);
+        setSavedInstance(savedInstanceState);
         findElem();
         setListener();
         updateQuestion();
         Log.d(TAG, "onCreate");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy");
     }
 
     @Override
@@ -285,7 +236,30 @@ public class QuestionGameActivity extends AppCompatActivity {
     public void returnToast(int msg) {
         Toast toast = Toast.makeText(QuestionGameActivity.this, msg, Toast.LENGTH_SHORT);
         toast.show();
-        toast.setGravity(Gravity.TOP | Gravity.RIGHT, 280, 200);
+        toast.setGravity(Gravity.TOP | Gravity.RIGHT, 280, 130);
+    }
+
+    public void setSavedInstance(Bundle savedInstanceState){
+        if (savedInstanceState != null) {
+
+            Log.d(TAG, "this is question game   " + savedInstanceState);
+            mCurIndex = savedInstanceState.getInt(BUNDLE_KEY_CURRENT_INDEX, 0);
+            mAnswerNum = savedInstanceState.getInt(BUNDLE_KEY_ANSWER_NUM, 0);
+            mScoreNumber = savedInstanceState.getInt(BUNDLE_KEY_SCORE_NUM, 0);
+            mIsCheat = savedInstanceState.getBoolean(BUNDLE_KEY_IS_CHEAT_BOOL, false);
+            mQuestions[mCurIndex].setCheat(mIsCheat);
+
+            boolean[] answerState = savedInstanceState.getBooleanArray(ANSWER);
+            for (int i = 0; i < mQuestions.length; i++) {
+                mQuestions[i].setAnswer(answerState[i]);
+            }
+
+            boolean[] cheatState = savedInstanceState.getBooleanArray(IS_CHEAT);
+            for (int i = 0; i < mQuestions.length; i++) {
+                mQuestions[i].setCheat(cheatState[i]);
+            }
+        } else
+            Log.d(TAG, "is null!   " + savedInstanceState);
     }
 
     @Override
@@ -309,4 +283,33 @@ public class QuestionGameActivity extends AppCompatActivity {
         outState.putBooleanArray(ANSWER, qIsCheat);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
+    }
 }
