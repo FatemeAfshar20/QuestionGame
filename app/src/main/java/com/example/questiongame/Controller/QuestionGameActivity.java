@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -23,9 +24,11 @@ import com.example.questiongame.R;
 public class QuestionGameActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_CHEAT = 0;
     public static final int REQUEST_CODE_SETTING = 1;
-    public static final String ANSWER = "answer";
-    public static final String IS_CHEAT = "qIsCheat";
-    public static final String FONT_SIZE = "FontSize";
+    public static final String EXTRA_FONT_SIZE = "com.example.questiongame.Controller.FontSize";
+    public static final String EXTRA_COLOR_MAIN_LAYOUT = "com.example.questiongame.Controller.Background Color Main Layout";
+    public static final String EXTRA_VISIBILITY_CHECK_LAYOUT = "com.example.questiongame.Controller.Visibility Layout";
+    public static final String EXTRA_VISIBILITY_NP_LAYOUT = "com.example.questiongame.Controller.Visibility NP Layout";
+    public static final String EXTRA_VISIBILITY_FL_LAYOUT = "com.example.questiongame.Controller.Visibility FL Layout";
     private Question[] mQuestions = {
             new Question(R.string.question_africa, true, false, false),
             new Question(R.string.question_asia, false, false, false),
@@ -34,19 +37,25 @@ public class QuestionGameActivity extends AppCompatActivity {
             new Question(R.string.question_oceans, true, false, false),
             new Question(R.string.question_australia, false, false, false)
     };
-    int mCurIndex;
-    TextView mTextView, mTextViewScore, mResultView;
-    ImageButton mBtnTrue, mBtnFalse, mBtnNext, mBtnPrev, mBtnLast, mBtnFirst, mBtnRefresh, mBtnSetting;
-    Button mBtnCheat;
-    ViewGroup mCheckLay, mNextPrevLay, mFirstLastLay, mFinishGameLay, mResultLay;
-    int mScoreNumber = 0;
-    int mAnswerNum = 0;
-    float fontSize = 0;
-    boolean mIsCheat = false;
+    private int mCurIndex;
+    private TextView mTextView, mTextViewScore, mResultView;
+    private ImageButton mBtnTrue, mBtnFalse, mBtnNext, mBtnPrev, mBtnLast, mBtnFirst, mBtnRefresh, mBtnSetting;
+    private Button mBtnCheat;
+    private ViewGroup mCheckLay, mNextPrevLay, mFirstLastLay, mFinishGameLay, mResultLay,mMainLay;
+    private int mScoreNumber = 0;
+    private int mAnswerNum = 0;
+    private float mFontSize =15;
+    private boolean mIsCheat = false;
+    private int mColor =Color.WHITE;
+    private int mVisibleNP=View.VISIBLE;
+    private int mVisibleFL=View.VISIBLE;
+    private int mVisibleCheck=View.VISIBLE;
+    private String mAnswer = "answer";
     private static final String TAG = "QuestionGame";
-    public static final String QUESTION_ANSWER = "androidx.appcompat.app.AppCompatActivity.QuestionAnswer";
+    public static final String QUESTION_ANSWER = "QuestionAnswer";
     private static final String BUNDLE_KEY_CURRENT_INDEX = "currentIndex";
     private static final String BUNDLE_KEY_ANSWER_NUM = "Answer number";
+    public static final String IS_CHEAT = "qIsCheat";
     private static final String BUNDLE_KEY_SCORE_NUM = "Score number";
     private static final String BUNDLE_KEY_IS_CHEAT_BOOL = "Score number";
 
@@ -54,10 +63,9 @@ public class QuestionGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setSavedInstance(savedInstanceState);
         findElem();
         setListener();
-        updateQuestion();
+        setSavedInstance(savedInstanceState);
         Log.d(TAG, "onCreate");
     }
 
@@ -70,10 +78,21 @@ public class QuestionGameActivity extends AppCompatActivity {
             mIsCheat = data.getBooleanExtra(CheatActivity.EXTRA_IS_CHEAT, false);
             mQuestions[mCurIndex].setCheat(mIsCheat);
         } else if (requestCode == REQUEST_CODE_SETTING) {
-            fontSize = data.getFloatExtra(Setting.EXTRA_FONT_SIZE, 0);
-            mTextView.setTextSize(fontSize);
-        }
+            mColor =data.getIntExtra(Setting.EXTRA_COLOR_MAIN_LAYOUT, mColor);
+            mMainLay.setBackgroundColor(mColor);
 
+            mFontSize = data.getFloatExtra(Setting.EXTRA_FONT_SIZE, mFontSize);
+            mTextView.setTextSize(mFontSize);
+
+            mVisibleNP=data.getIntExtra(Setting.EXTRA_LAY_NP,mVisibleNP);
+            mNextPrevLay.setVisibility(mVisibleNP);
+
+            mVisibleCheck=data.getIntExtra(Setting.EXTRA_LAY_CHECK,mVisibleCheck);
+            mCheckLay.setVisibility(mVisibleCheck);
+
+            mVisibleFL=data.getIntExtra(Setting.EXTRA_LAY_FL,mVisibleFL);
+            mFirstLastLay.setVisibility(mVisibleFL);
+        }
     }
 
     private void findElem() {
@@ -84,7 +103,7 @@ public class QuestionGameActivity extends AppCompatActivity {
         mBtnFirst = findViewById(R.id.btn_first_question);
         mBtnLast = findViewById(R.id.btn_last_question);
         mBtnRefresh = findViewById(R.id.btn_refresh);
-        mTextView = findViewById(R.id.question);
+        mTextView = findViewById(R.id.question_text);
         mFinishGameLay = findViewById(R.id.finish_game_lay);
         mFinishGameLay.setVisibility(View.GONE);
         mCheckLay = findViewById(R.id.check_lay);
@@ -96,6 +115,7 @@ public class QuestionGameActivity extends AppCompatActivity {
         mResultView = findViewById(R.id.result_text);
         mBtnCheat = findViewById(R.id.btn_cheat);
        mBtnSetting=findViewById(R.id.btn_setting);
+       mMainLay=findViewById(R.id.main_lay);
     }
 
     private void setListener() {
@@ -171,8 +191,14 @@ public class QuestionGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(QuestionGameActivity.this, Setting.class);
-                intent.putExtra(FONT_SIZE, mTextView.getTextSize());
+                intent.putExtra(EXTRA_FONT_SIZE, mTextView.getTextSize());
+
+                intent.putExtra(EXTRA_COLOR_MAIN_LAYOUT,mMainLay.getSolidColor());
                 startActivityForResult(intent, REQUEST_CODE_SETTING);
+
+                intent.putExtra(EXTRA_VISIBILITY_CHECK_LAYOUT,mCheckLay.getVisibility());
+                intent.putExtra(EXTRA_VISIBILITY_FL_LAYOUT,mFirstLastLay.getVisibility());
+                intent.putExtra(EXTRA_VISIBILITY_NP_LAYOUT,mNextPrevLay.getVisibility());
             }
         });
 
@@ -249,7 +275,7 @@ public class QuestionGameActivity extends AppCompatActivity {
             mIsCheat = savedInstanceState.getBoolean(BUNDLE_KEY_IS_CHEAT_BOOL, false);
             mQuestions[mCurIndex].setCheat(mIsCheat);
 
-            boolean[] answerState = savedInstanceState.getBooleanArray(ANSWER);
+            boolean[] answerState = savedInstanceState.getBooleanArray(mAnswer);
             for (int i = 0; i < mQuestions.length; i++) {
                 mQuestions[i].setAnswer(answerState[i]);
             }
@@ -258,8 +284,10 @@ public class QuestionGameActivity extends AppCompatActivity {
             for (int i = 0; i < mQuestions.length; i++) {
                 mQuestions[i].setCheat(cheatState[i]);
             }
+            updateQuestion();
         } else
             Log.d(TAG, "is null!   " + savedInstanceState);
+
     }
 
     @Override
@@ -280,7 +308,7 @@ public class QuestionGameActivity extends AppCompatActivity {
         for (int i = 0; i < qIsCheat.length; i++) {
             qIsCheat[i] = mQuestions[i].isCheat();
         }
-        outState.putBooleanArray(ANSWER, qIsCheat);
+        outState.putBooleanArray(mAnswer, qIsCheat);
     }
 
     @Override

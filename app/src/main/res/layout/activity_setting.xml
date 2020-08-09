@@ -74,28 +74,28 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/btn_color_pl"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/beauty_so_pl"
              />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_color_pinkl"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/beauty_pink_light"
            />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_color_pink"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/beauty_pink"
             />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btn_color_purple"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/beauty_purple_light"
@@ -126,6 +126,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="10sp"
         >
 
         <TextView
@@ -140,7 +141,7 @@
             android:textSize="15sp" />
 
         <RadioButton
-            android:id="@+id/raidio_hide_check_lay"
+            android:id="@+id/radio_hide_check_lay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/b_yekan"
@@ -148,7 +149,7 @@
             android:text="@string/radio_hide_check" />
 
         <RadioButton
-            android:id="@+id/raidio_hide_np_lay"
+            android:id="@+id/radio_hide_np_lay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/b_yekan"
@@ -156,7 +157,7 @@
             android:text="@string/radio_hide_np" />
 
         <RadioButton
-            android:id="@+id/raidio_hide_fl_lay"
+            android:id="@+id/radio_hide_fl_lay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/b_yekan"
@@ -169,15 +170,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|left"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginLeft="5dp">
 
         <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="10sp"
-            android:background="#FFFFFF"
+            android:id="@+id/btn_go_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:background="#00FFFFFF"
             app:srcCompat="@drawable/ic_go_back" />
     </LinearLayout>
 
