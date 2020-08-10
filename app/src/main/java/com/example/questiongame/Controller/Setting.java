@@ -3,6 +3,7 @@ package com.example.questiongame.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,7 @@ public class Setting extends AppCompatActivity {
     public static final String EXTRA_LAY_CHECK = "com.example.questiongame.Controller.Layout Check";
     public static final String EXTRA_LAY_NP = "com.example.questiongame.Controller.Layout NP";
     public static final String EXTRA_LAY_FL = "com.example.questiongame.Controller.Layout FL";
-    private Button mBtnSmall,mBtnLarge,mBtnMedium,mBtnColorPink,mBtnColorPinkL,mBtnColorPurple,mBtnColorPurpleL;
+    private Button mBtnSmall,mBtnLarge,mBtnMedium,mBtnColorPink,mBtnColorPinkL,mBtnColorPurple,mBtnColorPurpleL,mBtnColorWhite;
     protected RadioButton mRadioHideCheckLay,mRadioHideNPLay,mRadioHideFLLay;
     private ImageButton mBtnGoBack;
     private Intent mDate =new Intent();
@@ -49,6 +50,7 @@ public class Setting extends AppCompatActivity {
         mBtnColorPinkL=findViewById(R.id.btn_color_pinkl);
         mBtnColorPurple=findViewById(R.id.btn_color_purple);
         mBtnColorPurpleL=findViewById(R.id.btn_color_pl);
+        mBtnColorWhite=findViewById(R.id.btn_color_white);
         mBtnGoBack=findViewById(R.id.btn_go_back);
         mRadioHideCheckLay=findViewById(R.id.radio_hide_check_lay);
         mRadioHideFLLay=findViewById(R.id.radio_hide_fl_lay);
@@ -112,6 +114,13 @@ public class Setting extends AppCompatActivity {
             }
         });
 
+        mBtnColorWhite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setBackColor(getResources().getColor(R.color.white));
+            }
+        });
+
         mRadioHideNPLay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,6 +141,8 @@ public class Setting extends AppCompatActivity {
                 setHideLayout(View.INVISIBLE,EXTRA_LAY_CHECK);
             }
         });
+
+
 
     }
 

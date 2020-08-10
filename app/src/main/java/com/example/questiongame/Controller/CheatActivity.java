@@ -22,7 +22,7 @@ public class CheatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
-        checkAnswer = getIntent().getBooleanExtra(QuestionGameActivity.QUESTION_ANSWER, false);
+        checkAnswer = getIntent().getBooleanExtra(QuestionGameActivity.EXTRA_QUESTION_ANSWER, false);
         findElem();
         setListener();
     }

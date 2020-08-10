@@ -29,6 +29,7 @@ public class QuestionGameActivity extends AppCompatActivity {
     public static final String EXTRA_VISIBILITY_CHECK_LAYOUT = "com.example.questiongame.Controller.Visibility Layout";
     public static final String EXTRA_VISIBILITY_NP_LAYOUT = "com.example.questiongame.Controller.Visibility NP Layout";
     public static final String EXTRA_VISIBILITY_FL_LAYOUT = "com.example.questiongame.Controller.Visibility FL Layout";
+    public static final String EXTRA_QUESTION_ANSWER = "com.example.questiongame.Controller.QuestionAnswer";
     private Question[] mQuestions = {
             new Question(R.string.question_africa, true, false, false),
             new Question(R.string.question_asia, false, false, false),
@@ -50,14 +51,19 @@ public class QuestionGameActivity extends AppCompatActivity {
     private int mVisibleNP=View.VISIBLE;
     private int mVisibleFL=View.VISIBLE;
     private int mVisibleCheck=View.VISIBLE;
-    private String mAnswer = "answer";
+    public static final String ANSWER = "answer";
+    public static final String Q_IS_CHEAT = "qIsCheat";
     private static final String TAG = "QuestionGame";
-    public static final String QUESTION_ANSWER = "QuestionAnswer";
-    private static final String BUNDLE_KEY_CURRENT_INDEX = "currentIndex";
+    public static final String BUNDLE_VISIBILITY_OF_CHECK_LAYOUT = "Visibility of Check Layout";
+    public static final String BUNDLE_VISIBILITY_OF_NP_LAYOUT = "Visibility of NP Layout";
+    public static final String BUNDLE_VISIBILITY_OF_FL_LAYOUT = "Visibility of FL Layout";
+    public static final String BUNDLE_KEY_BACKGROUND_COLOR = "Background color";
+    public static final String BUNDLE_KEY_FONT_SIZE = "Font size";
+    public static final String BUNDLE_KEY_CURRENT_INDEX = "currentIndex";
     private static final String BUNDLE_KEY_ANSWER_NUM = "Answer number";
-    public static final String IS_CHEAT = "qIsCheat";
-    private static final String BUNDLE_KEY_SCORE_NUM = "Score number";
-    private static final String BUNDLE_KEY_IS_CHEAT_BOOL = "Score number";
+    public static final String BUNDLE_IS_CHEAT = "qIsCheat";
+    public static final String BUNDLE_KEY_SCORE_NUM = "Score number";
+    public static final String BUNDLE_KEY_IS_CHEAT_BOOL = "Score number";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +71,43 @@ public class QuestionGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         findElem();
         setListener();
-        setSavedInstance(savedInstanceState);
+        saveInstance(savedInstanceState);
+        // setSavedInstance(savedInstanceState);
         Log.d(TAG, "onCreate");
+    }
+
+    private void saveInstance(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            Log.d(TAG, "this is question game   " + savedInstanceState);
+            mCurIndex = savedInstanceState.getInt(BUNDLE_KEY_CURRENT_INDEX, 0);
+            mAnswerNum = savedInstanceState.getInt(BUNDLE_KEY_ANSWER_NUM, 0);
+            mScoreNumber = savedInstanceState.getInt(BUNDLE_KEY_SCORE_NUM, 0);
+            mIsCheat=savedInstanceState.getBoolean(BUNDLE_KEY_IS_CHEAT_BOOL,false);
+            //--  Setting can change them
+            mIsCheat = savedInstanceState.getBoolean(BUNDLE_KEY_IS_CHEAT_BOOL, false);
+            mFontSize=savedInstanceState.getFloat(BUNDLE_KEY_FONT_SIZE,0);
+            mTextView.setTextSize(mFontSize);
+            mColor=savedInstanceState.getInt(BUNDLE_KEY_BACKGROUND_COLOR,0);
+            mMainLay.setBackgroundColor(mColor);
+            mVisibleCheck=savedInstanceState.getInt(BUNDLE_VISIBILITY_OF_CHECK_LAYOUT,0);
+            mCheckLay.setVisibility(mVisibleCheck);
+            mVisibleNP=savedInstanceState.getInt(BUNDLE_VISIBILITY_OF_NP_LAYOUT,0);
+            mNextPrevLay.setVisibility(mVisibleNP);
+            mVisibleFL=savedInstanceState.getInt(BUNDLE_VISIBILITY_OF_FL_LAYOUT,0);
+            mFirstLastLay.setVisibility(mVisibleFL);
+            //--
+            mQuestions[mCurIndex].setCheat(mIsCheat);
+            boolean[] answerState = savedInstanceState.getBooleanArray(ANSWER);
+            for (int i=0; i<mQuestions.length; i++) {
+                mQuestions[i].setAnswer(answerState[i]);
+            }
+            boolean[] cheatState = savedInstanceState.getBooleanArray(Q_IS_CHEAT);
+            for (int i=0; i<mQuestions.length; i++) {
+                mQuestions[i].setCheat(cheatState[i]);
+            }
+            updateQuestion();
+        } else
+            Log.d(TAG, "is null!   " + savedInstanceState);
     }
 
     @Override
@@ -182,7 +223,7 @@ public class QuestionGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(QuestionGameActivity.this, CheatActivity.class);
-                intent.putExtra(QUESTION_ANSWER, mQuestions[mCurIndex].answerCheck());
+                intent.putExtra(EXTRA_QUESTION_ANSWER, mQuestions[mCurIndex].answerCheck());
                 startActivityForResult(intent, REQUEST_CODE_CHEAT);
             }
         });
@@ -272,15 +313,15 @@ public class QuestionGameActivity extends AppCompatActivity {
             mCurIndex = savedInstanceState.getInt(BUNDLE_KEY_CURRENT_INDEX, 0);
             mAnswerNum = savedInstanceState.getInt(BUNDLE_KEY_ANSWER_NUM, 0);
             mScoreNumber = savedInstanceState.getInt(BUNDLE_KEY_SCORE_NUM, 0);
-            mIsCheat = savedInstanceState.getBoolean(BUNDLE_KEY_IS_CHEAT_BOOL, false);
+
             mQuestions[mCurIndex].setCheat(mIsCheat);
 
-            boolean[] answerState = savedInstanceState.getBooleanArray(mAnswer);
+            boolean[] answerState = savedInstanceState.getBooleanArray(ANSWER);
             for (int i = 0; i < mQuestions.length; i++) {
                 mQuestions[i].setAnswer(answerState[i]);
             }
 
-            boolean[] cheatState = savedInstanceState.getBooleanArray(IS_CHEAT);
+            boolean[] cheatState = savedInstanceState.getBooleanArray(BUNDLE_IS_CHEAT);
             for (int i = 0; i < mQuestions.length; i++) {
                 mQuestions[i].setCheat(cheatState[i]);
             }
@@ -292,23 +333,30 @@ public class QuestionGameActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
+        // --Setting Activity can change them
+        outState.putInt(BUNDLE_KEY_BACKGROUND_COLOR,mColor);
+        outState.putInt(BUNDLE_VISIBILITY_OF_CHECK_LAYOUT,mVisibleCheck);
+        outState.putInt(BUNDLE_VISIBILITY_OF_NP_LAYOUT,mVisibleNP);
+        outState.putInt(BUNDLE_VISIBILITY_OF_FL_LAYOUT,mVisibleFL);
+        outState.putFloat(BUNDLE_KEY_FONT_SIZE,mFontSize);
+        //--
         super.onSaveInstanceState(outState);
         outState.putInt(BUNDLE_KEY_CURRENT_INDEX, mCurIndex);
         outState.putInt(BUNDLE_KEY_ANSWER_NUM, mAnswerNum);
         outState.putInt(BUNDLE_KEY_SCORE_NUM, mScoreNumber);
-        outState.putBoolean(BUNDLE_KEY_IS_CHEAT_BOOL, mIsCheat);
-
+        outState.putBoolean(BUNDLE_KEY_IS_CHEAT_BOOL,mIsCheat);
         boolean[] qAnswered = new boolean[mQuestions.length];
-        for (int i = 0; i < qAnswered.length; i++) {
-            qAnswered[i] = mQuestions[i].isAnswer();
+        for (int i = 0; i <qAnswered.length ; i++) {
+            qAnswered[i]=mQuestions[i].isAnswer();
         }
-        outState.putBooleanArray(IS_CHEAT, qAnswered);
 
-        boolean[] qIsCheat = new boolean[mQuestions.length];
-        for (int i = 0; i < qIsCheat.length; i++) {
-            qIsCheat[i] = mQuestions[i].isCheat();
+        boolean[] qIsCheat= new boolean[mQuestions.length];
+        for (int i = 0; i <qIsCheat.length ; i++) {
+            qIsCheat[i]=mQuestions[i].isCheat();
         }
-        outState.putBooleanArray(mAnswer, qIsCheat);
+        outState.putBooleanArray(Q_IS_CHEAT,qIsCheat);
+        outState.putBooleanArray(ANSWER,qAnswered);
+
     }
 
     @Override
