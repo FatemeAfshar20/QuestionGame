@@ -24,20 +24,15 @@ public class Setting extends AppCompatActivity {
     public static final String EXTRA_LAY_FL = "com.example.questiongame.Controller.Layout FL";
     private Button mBtnSmall,mBtnLarge,mBtnMedium,mBtnColorPink,mBtnColorPinkL,mBtnColorPurple,mBtnColorPurpleL,mBtnColorWhite;
     protected RadioButton mRadioHideCheckLay,mRadioHideNPLay,mRadioHideFLLay;
-    private ImageButton mBtnGoBack;
+    private ImageButton mBtnGoBack,mSave;
     private Intent mDate =new Intent();
     protected float mFontSize;
     protected int mColor;
-    protected int mVisibleLayCheck,mVisibleLayNP,mVisibleLayFL;
+    protected String mLayName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        mFontSize =getIntent().getFloatExtra(QuestionGameActivity.EXTRA_FONT_SIZE,0);
-        mColor =getIntent().getIntExtra(QuestionGameActivity.EXTRA_COLOR_MAIN_LAYOUT,0);
-        mVisibleLayCheck=getIntent().getIntExtra(QuestionGameActivity.EXTRA_VISIBILITY_CHECK_LAYOUT,0);
-        mVisibleLayNP=getIntent().getIntExtra(QuestionGameActivity.EXTRA_VISIBILITY_NP_LAYOUT,0);
-        mVisibleLayFL=getIntent().getIntExtra(QuestionGameActivity.EXTRA_VISIBILITY_FL_LAYOUT,0);
         findElem();
         setListener();
     }
@@ -55,27 +50,28 @@ public class Setting extends AppCompatActivity {
         mRadioHideCheckLay=findViewById(R.id.radio_hide_check_lay);
         mRadioHideFLLay=findViewById(R.id.radio_hide_fl_lay);
         mRadioHideNPLay=findViewById(R.id.radio_hide_np_lay);
+        mSave=findViewById(R.id.save);
     }
 
     private void setListener() {
         mBtnSmall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                        setFontSize(14);
+                        mFontSize=14;
             }
         });
 
         mBtnLarge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    setFontSize(26);
+                mFontSize=26;
             }
         });
 
         mBtnMedium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    setFontSize(18);
+                mFontSize=18;
             }
         });
 
@@ -89,61 +85,67 @@ public class Setting extends AppCompatActivity {
         mBtnColorPink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setBackColor(getResources().getColor(R.color.beauty_pink));
+                mColor=getResources().getColor(R.color.beauty_pink);
             }
         });
 
         mBtnColorPurpleL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setBackColor(getResources().getColor(R.color.beauty_so_pl));
+                mColor=getResources().getColor(R.color.beauty_so_pl);
             }
         });
 
         mBtnColorPurple.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setBackColor(getResources().getColor(R.color.beauty_purple_light));
+                mColor=getResources().getColor(R.color.beauty_purple_light);
             }
         });
 
         mBtnColorPinkL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setBackColor(getResources().getColor(R.color.beauty_pink_light));
+                mColor=getResources().getColor(R.color.beauty_pink_light);
             }
         });
 
         mBtnColorWhite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setBackColor(getResources().getColor(R.color.white));
+                mColor=getResources().getColor(R.color.white);
             }
         });
 
         mRadioHideNPLay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setHideLayout(View.INVISIBLE,EXTRA_LAY_NP);
+               mLayName=EXTRA_LAY_NP;
             }
         });
 
         mRadioHideFLLay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setHideLayout(View.INVISIBLE,EXTRA_LAY_FL);
+                mLayName=EXTRA_LAY_FL;
             }
         });
 
         mRadioHideCheckLay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setHideLayout(View.INVISIBLE,EXTRA_LAY_CHECK);
+                mLayName=EXTRA_LAY_CHECK;
             }
         });
 
-
-
+        mSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setHideLayout(View.INVISIBLE,mLayName);
+                setBackColor(mColor);
+                setFontSize(mFontSize);
+            }
+        });
     }
 
     private void setFontSize(float fontSize) {

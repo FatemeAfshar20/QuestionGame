@@ -72,7 +72,6 @@ public class QuestionGameActivity extends AppCompatActivity {
         findElem();
         setListener();
         saveInstance(savedInstanceState);
-        // setSavedInstance(savedInstanceState);
         Log.d(TAG, "onCreate");
     }
 
@@ -120,19 +119,24 @@ public class QuestionGameActivity extends AppCompatActivity {
             mQuestions[mCurIndex].setCheat(mIsCheat);
         } else if (requestCode == REQUEST_CODE_SETTING) {
             mColor =data.getIntExtra(Setting.EXTRA_COLOR_MAIN_LAYOUT, mColor);
-            mMainLay.setBackgroundColor(mColor);
+            if(mColor!=0)
+                mMainLay.setBackgroundColor(mColor);
 
             mFontSize = data.getFloatExtra(Setting.EXTRA_FONT_SIZE, mFontSize);
-            mTextView.setTextSize(mFontSize);
+            if(mFontSize!=0)
+                mTextView.setTextSize(mFontSize);
 
             mVisibleNP=data.getIntExtra(Setting.EXTRA_LAY_NP,mVisibleNP);
-            mNextPrevLay.setVisibility(mVisibleNP);
+            if(mVisibleNP!=0)
+                mNextPrevLay.setVisibility(mVisibleNP);
 
             mVisibleCheck=data.getIntExtra(Setting.EXTRA_LAY_CHECK,mVisibleCheck);
-            mCheckLay.setVisibility(mVisibleCheck);
+            if(mVisibleCheck!=0)
+                mCheckLay.setVisibility(mVisibleCheck);
 
             mVisibleFL=data.getIntExtra(Setting.EXTRA_LAY_FL,mVisibleFL);
-            mFirstLastLay.setVisibility(mVisibleFL);
+            if(mVisibleFL!=0)
+                 mFirstLastLay.setVisibility(mVisibleFL);
         }
     }
 
@@ -232,14 +236,7 @@ public class QuestionGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(QuestionGameActivity.this, Setting.class);
-                intent.putExtra(EXTRA_FONT_SIZE, mTextView.getTextSize());
-
-                intent.putExtra(EXTRA_COLOR_MAIN_LAYOUT,mMainLay.getSolidColor());
                 startActivityForResult(intent, REQUEST_CODE_SETTING);
-
-                intent.putExtra(EXTRA_VISIBILITY_CHECK_LAYOUT,mCheckLay.getVisibility());
-                intent.putExtra(EXTRA_VISIBILITY_FL_LAYOUT,mFirstLastLay.getVisibility());
-                intent.putExtra(EXTRA_VISIBILITY_NP_LAYOUT,mNextPrevLay.getVisibility());
             }
         });
 
@@ -304,31 +301,6 @@ public class QuestionGameActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(QuestionGameActivity.this, msg, Toast.LENGTH_SHORT);
         toast.show();
         toast.setGravity(Gravity.TOP | Gravity.RIGHT, 280, 130);
-    }
-
-    public void setSavedInstance(Bundle savedInstanceState){
-        if (savedInstanceState != null) {
-
-            Log.d(TAG, "this is question game   " + savedInstanceState);
-            mCurIndex = savedInstanceState.getInt(BUNDLE_KEY_CURRENT_INDEX, 0);
-            mAnswerNum = savedInstanceState.getInt(BUNDLE_KEY_ANSWER_NUM, 0);
-            mScoreNumber = savedInstanceState.getInt(BUNDLE_KEY_SCORE_NUM, 0);
-
-            mQuestions[mCurIndex].setCheat(mIsCheat);
-
-            boolean[] answerState = savedInstanceState.getBooleanArray(ANSWER);
-            for (int i = 0; i < mQuestions.length; i++) {
-                mQuestions[i].setAnswer(answerState[i]);
-            }
-
-            boolean[] cheatState = savedInstanceState.getBooleanArray(BUNDLE_IS_CHEAT);
-            for (int i = 0; i < mQuestions.length; i++) {
-                mQuestions[i].setCheat(cheatState[i]);
-            }
-            updateQuestion();
-        } else
-            Log.d(TAG, "is null!   " + savedInstanceState);
-
     }
 
     @Override

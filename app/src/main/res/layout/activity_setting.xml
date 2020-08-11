@@ -185,6 +185,15 @@
             android:layout_gravity="left"
             android:background="#00FFFFFF"
             app:srcCompat="@drawable/ic_go_back" />
+
+        <ImageButton
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/ic_save" />
+
     </LinearLayout>
 
 </LinearLayout>
