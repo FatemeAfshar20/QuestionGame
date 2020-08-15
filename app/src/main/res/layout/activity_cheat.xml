@@ -8,58 +8,10 @@
     android:orientation="vertical"
     tools:context=".Controller.CheatActivity">
 
-    <TextView
-        android:id="@+id/txt_warn_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/warn_question"
-        android:fontFamily="@font/b_yekan"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:background="@color/beauty_pink_light"
-        android:padding="10sp"
-        />
-
-    <TextView
-        android:id="@+id/answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="@string/true_answer"
-        android:textColor="@color/black"
-        android:fontFamily="@font/b_yekan"
-        android:textSize="18sp"
-        android:layout_margin="10dp"
-        android:padding="10sp"
-        />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_go_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/b_yekan"
-            android:background="#047123"
-            android:text="@string/go_back"
-            android:textColor="#FFF"
-            android:layout_margin="5dp"
-
-            />
-
-        <Button
-            android:id="@+id/btn_cheat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D81515"
-            android:text="@string/cheat_answer"
-            android:fontFamily="@font/b_yekan"
-            android:textColor="#FFF"
-            android:layout_margin="5dp"
-            />
-
-    </LinearLayout>
-
+        android:id="@+id/fragment_cheat"
+        android:name="com.example.questiongame.Controller.CheatFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
 </LinearLayout>

@@ -26,4 +26,6 @@
     <string name="radio_hide_check">دکمه های درست و نادرست</string>
     <string name="radio_hide_np">دکمه های قبل و بعد</string>
     <string name="radio_hide_fl">دکمه های رفتن به اولین و آخرین سوال</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
