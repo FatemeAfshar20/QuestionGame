@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.Gravity;
@@ -79,7 +80,6 @@ public class QuestionGameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_question_game, container, false);
-
         findElem(view);
         setListener();
         saveInstance(savedInstanceState);
@@ -120,45 +120,24 @@ public class QuestionGameFragment extends Fragment {
         } else
             Log.d(TAG, "is null!   " + savedInstanceState);
     }
-    /*
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode != Activity.RESULT_OK || data == null)
-            return;
-        if (requestCode == REQUEST_CODE_CHEAT) {
-            mIsCheat = data.getBooleanExtra(CheatFragment.EXTRA_IS_CHEAT, false);
-            mQuestions[mCurIndex].setCheat(mIsCheat);
-        } else if (requestCode == REQUEST_CODE_SETTING) {
-            mColor =data.getIntExtra(Setting.EXTRA_COLOR_MAIN_LAYOUT, mColor);
-            if(mColor!=0)
-                mMainLay.setBackgroundColor(mColor);
-
-            mFontSize = data.getFloatExtra(Setting.EXTRA_FONT_SIZE, mFontSize);
-            if(mFontSize!=0)
-                mTextView.setTextSize(mFontSize);
-
-            mVisibleNP=data.getIntExtra(Setting.EXTRA_LAY_NP,mVisibleNP);
-            if(mVisibleNP!=0)
-                mNextPrevLay.setVisibility(mVisibleNP);
-
-            mVisibleCheck=data.getIntExtra(Setting.EXTRA_LAY_CHECK,mVisibleCheck);
-            if(mVisibleCheck!=0)
-                mCheckLay.setVisibility(mVisibleCheck);
-
-            mVisibleFL=data.getIntExtra(Setting.EXTRA_LAY_FL,mVisibleFL);
-            if(mVisibleFL!=0)
-                mFirstLastLay.setVisibility(mVisibleFL);
+    public void fragmentResult(){
+        Bundle b = getArguments();
+        if(b!=null) {
+            boolean isCheat = b.getBoolean(CheatFragment.EXTRA_IS_CHEAT);
+            mQuestions[mCurIndex].setCheat(isCheat);
         }
-    }*/
+    }
+
+    @Override
+    public void onAttachFragment(@NonNull Fragment childFragment) {
+        super.onAttachFragment(childFragment);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        getActivity();
-        if (resultCode != Activity.RESULT_OK || data == null)
+
+       if (resultCode != Activity.RESULT_OK || data == null)
             return;
         if (requestCode == REQUEST_CODE_CHEAT) {
             mIsCheat = data.getBooleanExtra(CheatFragment.EXTRA_IS_CHEAT, false);
@@ -252,9 +231,9 @@ public class QuestionGameFragment extends Fragment {
         mBtnCheat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CheatActivity.class);
-                intent.putExtra(EXTRA_QUESTION_ANSWER, mQuestions[mCurIndex].answerCheck());
-                getActivity().startActivityForResult(intent, REQUEST_CODE_CHEAT);
+                Intent intent=new Intent(getActivity(),CheatActivity.class);
+                intent.putExtra(EXTRA_QUESTION_ANSWER,mQuestions[mCurIndex].isAnswer());
+               startActivityForResult(intent,REQUEST_CODE_CHEAT);
             }
         });
 
