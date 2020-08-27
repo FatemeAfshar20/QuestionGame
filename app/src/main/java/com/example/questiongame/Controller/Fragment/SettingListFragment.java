@@ -34,10 +34,23 @@ public class SettingListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.activity_setting, container, false);
+        View view= inflater.inflate(R.layout.setting_list, container, false);
         findElem(view);
         setListener();
         return view;
+    }
+
+    private void findElem(View view){
+        mBtnLarge=view.findViewById(R.id.btn_large_font);
+        mBtnSmall=view.findViewById(R.id.btn_small_font);
+        mBtnMedium=view.findViewById(R.id.btn_medium_font);
+        mBtnColorPink=view.findViewById(R.id.btn_color_text_pink);
+        mBtnColorPinkL=view.findViewById(R.id.btn_color_text_pinkl);
+        mBtnColorPurple=view.findViewById(R.id.btn_color_text_purple);
+        mBtnColorPurpleL=view.findViewById(R.id.btn_color_text_pl);
+        mBtnColorWhite=view.findViewById(R.id.btn_color_text_white);
+        mBtnGoBack=view.findViewById(R.id.btn_go_back);
+        mSave=view.findViewById(R.id.save);
     }
 
     private void setListener() {
@@ -110,19 +123,6 @@ public class SettingListFragment extends Fragment {
                 setNewSetting();
             }
         });
-    }
-
-    private void findElem(View view){
-        mBtnLarge=view.findViewById(R.id.btn_large_font);
-        mBtnSmall=view.findViewById(R.id.btn_small_font);
-        mBtnMedium=view.findViewById(R.id.btn_medium_font);
-        mBtnColorPink=view.findViewById(R.id.btn_color_pink);
-        mBtnColorPinkL=view.findViewById(R.id.btn_color_pinkl);
-        mBtnColorPurple=view.findViewById(R.id.btn_color_purple);
-        mBtnColorPurpleL=view.findViewById(R.id.btn_color_pl);
-        mBtnColorWhite=view.findViewById(R.id.btn_color_white);
-        mBtnGoBack=view.findViewById(R.id.btn_go_back);
-        mSave=view.findViewById(R.id.save);
     }
 
     public void setNewSetting(){
