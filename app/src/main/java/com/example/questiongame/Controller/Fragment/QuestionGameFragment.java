@@ -1,4 +1,4 @@
-package com.example.questiongame.Controller;
+package com.example.questiongame.Controller.Fragment;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.Gravity;
@@ -20,22 +19,24 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.questiongame.Controller.CheatActivity;
+import com.example.questiongame.Controller.LoginActivity;
 import com.example.questiongame.Model.Question;
+import com.example.questiongame.Model.UserInfo;
 import com.example.questiongame.R;
 
 public class QuestionGameFragment extends Fragment {
+
+    public static final String EXTRA_LOGIN_INFO = "Login Information";
+    public static final String BUNDLE_LOGIN_INFO = "Login Information";
 
     public QuestionGameFragment(){
 
     }
     public static final int REQUEST_CODE_CHEAT = 0;
     public static final int REQUEST_CODE_SETTING = 1;
-    public static final String EXTRA_FONT_SIZE = "com.example.questiongame.Controller.FontSize";
-    public static final String EXTRA_COLOR_MAIN_LAYOUT = "com.example.questiongame.Controller.Background Color Main Layout";
-    public static final String EXTRA_VISIBILITY_CHECK_LAYOUT = "com.example.questiongame.Controller.Visibility Layout";
-    public static final String EXTRA_VISIBILITY_NP_LAYOUT = "com.example.questiongame.Controller.Visibility NP Layout";
-    public static final String EXTRA_VISIBILITY_FL_LAYOUT = "com.example.questiongame.Controller.Visibility FL Layout";
     public static final String EXTRA_QUESTION_ANSWER = "com.example.questiongame.Controller.QuestionAnswer";
+    public static final String EXTRA_SETTING="Question Game Setting Now";
     private Question[] mQuestions = {
             new Question(R.string.question_africa, true, false, false),
             new Question(R.string.question_asia, false, false, false),
@@ -45,10 +46,11 @@ public class QuestionGameFragment extends Fragment {
             new Question(R.string.question_australia, false, false, false)
     };
     private int mCurIndex;
-    private TextView mTextView, mTextViewScore, mResultView;
+    private TextView mTextView, mTextViewScore, mResultView,mUserName;
     private ImageButton mBtnTrue, mBtnFalse, mBtnNext, mBtnPrev, mBtnLast, mBtnFirst, mBtnRefresh, mBtnSetting;
-    private Button mBtnCheat;
+    private Button mBtnCheat,mBtnLogout;
     private ViewGroup mCheckLay, mNextPrevLay, mFirstLastLay, mFinishGameLay, mResultLay,mMainLay;
+    private UserInfo mUserInfo=new UserInfo();
     private int mScoreNumber = 0;
     private int mAnswerNum = 0;
     private float mFontSize =15;
@@ -80,9 +82,11 @@ public class QuestionGameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_question_game, container, false);
+        mUserInfo=getActivity().getIntent().getParcelableExtra(LoginFragment.EXTRA_LOGIN_INFORMATION);
         findElem(view);
         setListener();
         saveInstance(savedInstanceState);
+        mUserName.setText(mUserInfo.getUserName());
         // Inflate the layout for this fragment
         return view;
     }
@@ -90,6 +94,8 @@ public class QuestionGameFragment extends Fragment {
     private void saveInstance(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             Log.d(TAG, "this is question game   " + savedInstanceState);
+            mUserInfo=savedInstanceState.getParcelable(BUNDLE_LOGIN_INFO);
+
             mCurIndex = savedInstanceState.getInt(BUNDLE_KEY_CURRENT_INDEX, 0);
             mAnswerNum = savedInstanceState.getInt(BUNDLE_KEY_ANSWER_NUM, 0);
             mScoreNumber = savedInstanceState.getInt(BUNDLE_KEY_SCORE_NUM, 0);
@@ -130,11 +136,6 @@ public class QuestionGameFragment extends Fragment {
     }
 
     @Override
-    public void onAttachFragment(@NonNull Fragment childFragment) {
-        super.onAttachFragment(childFragment);
-    }
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
        if (resultCode != Activity.RESULT_OK || data == null)
@@ -153,6 +154,7 @@ public class QuestionGameFragment extends Fragment {
         mBtnFirst = view.findViewById(R.id.btn_first_question);
         mBtnLast = view.findViewById(R.id.btn_last_question);
         mBtnRefresh = view.findViewById(R.id.btn_refresh);
+        mBtnLogout=view.findViewById(R.id.logout);
         mTextView = view.findViewById(R.id.question_text);
         mFinishGameLay = view.findViewById(R.id.finish_game_lay);
         mFinishGameLay.setVisibility(View.GONE);
@@ -166,6 +168,7 @@ public class QuestionGameFragment extends Fragment {
         mBtnCheat = view.findViewById(R.id.btn_cheat);
         mBtnSetting=view.findViewById(R.id.btn_setting);
         mMainLay=view.findViewById(R.id.main_lay);
+        mUserName=view.findViewById(R.id.username);
     }
 
     private void setListener() {
@@ -231,9 +234,18 @@ public class QuestionGameFragment extends Fragment {
         mBtnCheat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(),CheatActivity.class);
+                Intent intent=new Intent(getActivity(), CheatActivity.class);
                 intent.putExtra(EXTRA_QUESTION_ANSWER,mQuestions[mCurIndex].isAnswer());
                startActivityForResult(intent,REQUEST_CODE_CHEAT);
+            }
+        });
+
+        mBtnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), LoginActivity.class);
+                intent.putExtra(EXTRA_LOGIN_INFO,mUserInfo);
+                startActivity(intent);
             }
         });
 
@@ -304,6 +316,10 @@ public class QuestionGameFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        // Login Information
+        outState.putParcelable(BUNDLE_LOGIN_INFO,mUserInfo);
+        //--
+
         // --Setting Activity can change them
         outState.putInt(BUNDLE_KEY_BACKGROUND_COLOR,mColor);
         outState.putInt(BUNDLE_VISIBILITY_OF_CHECK_LAYOUT,mVisibleCheck);
@@ -311,7 +327,7 @@ public class QuestionGameFragment extends Fragment {
         outState.putInt(BUNDLE_VISIBILITY_OF_FL_LAYOUT,mVisibleFL);
         outState.putFloat(BUNDLE_KEY_FONT_SIZE,mFontSize);
         //--
-        super.onSaveInstanceState(outState);
+
         outState.putInt(BUNDLE_KEY_CURRENT_INDEX, mCurIndex);
         outState.putInt(BUNDLE_KEY_ANSWER_NUM, mAnswerNum);
         outState.putInt(BUNDLE_KEY_SCORE_NUM, mScoreNumber);

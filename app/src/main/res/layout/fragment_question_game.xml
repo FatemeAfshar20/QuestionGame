@@ -11,6 +11,20 @@
     android:background="#FFF"
     >
 
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:layout_margin="10dp"
+        android:text="TextView"
+        android:background="#F6E974"
+        android:padding="10dp"
+        android:fontFamily="@font/b_yekan"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        tools:ignore="RtlHardcoded" />
+
     <LinearLayout
         android:id="@+id/result"
         android:layout_width="wrap_content"
@@ -186,6 +200,12 @@
         android:layout_margin="15sp"
         android:background="#00FFFFFF"
         app:srcCompat="@drawable/ic_setting" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="logout" />
 
 
 </LinearLayout>

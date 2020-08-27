@@ -11,18 +11,24 @@ import java.util.Objects;
 public class SettingInfo implements Parcelable {
     private float mFontSize;
     private int mColor;
-    private String mLayName;
+    private int mLayNP;
+    private int mLaySS;
+    private int mLayCheck;
 
     public SettingInfo(Parcel in) {
         this.mColor=in.readInt();
         this.mFontSize=in.readFloat();
-        this.mLayName =in.readString();
+        this.mLayNP =in.readInt();
+        this.mLaySS=in.readInt();
+        this.mLayCheck=in.readInt();
     }
 
-    public SettingInfo(float fontSize, int color, String layName) {
+    public SettingInfo(float fontSize, int color, int layNP, int laySS,int layCheck) {
         mFontSize = fontSize;
         mColor = color;
-        mLayName = layName;
+        mLayNP = layNP;
+        mLaySS=laySS;
+        mLaySS=layCheck;
     }
 
     public SettingInfo(){
@@ -45,12 +51,28 @@ public class SettingInfo implements Parcelable {
         mColor = color;
     }
 
-    public String getLayName() {
-        return mLayName;
+    public int getLayNP() {
+        return mLayNP;
     }
 
-    public void setLayName(String layName) {
-        mLayName = layName;
+    public void setLayNP(int layNP) {
+        mLayNP = layNP;
+    }
+
+    public int getLaySS() {
+        return mLaySS;
+    }
+
+    public void setLaySS(int laySS) {
+        mLaySS = laySS;
+    }
+
+    public int getLayCheck() {
+        return mLayCheck;
+    }
+
+    public void setLayCheck(int layCheck) {
+        mLayCheck = layCheck;
     }
 
     public static final Creator<SettingInfo> CREATOR = new Creator<SettingInfo>() {
@@ -73,22 +95,10 @@ public class SettingInfo implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.mColor);
         dest.writeFloat(this.mFontSize);
-        dest.writeString(this.mLayName);
+        dest.writeInt(this.mLayNP);
+        dest.writeInt(this.mLaySS);
+        dest.writeInt(this.mLayCheck);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SettingInfo that = (SettingInfo) o;
-        return Objects.equals(mLayName, that.mLayName);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public int hashCode() {
-        return Objects.hash(mLayName);
-    }
 }
 

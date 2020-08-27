@@ -1,11 +1,9 @@
-package com.example.questiongame.Controller;
+package com.example.questiongame.Controller.Fragment;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,10 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.questiongame.Model.Question;
 import com.example.questiongame.R;
-
-import java.util.Objects;
 
 public class CheatFragment extends Fragment {
     public static final String EXTRA_IS_CHEAT = "com.example.questiongame.Controller.IsCheat";

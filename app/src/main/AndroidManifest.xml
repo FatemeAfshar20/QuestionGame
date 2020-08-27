@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controller.Setting"></activity>
+        <activity android:name=".Controller.QuestionGameActivity"></activity>
+        <activity android:name=".Controller.Setting" />
         <activity android:name=".Controller.CheatActivity" />
-        <activity android:name=".Controller.QuestionGameActivity"  android:icon="@drawable/ic_launcher">
+        <activity
+            android:name=".Controller.LoginActivity"
+            android:icon="@drawable/ic_launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,6 +5,7 @@
     android:id="@+id/main_lay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="right"
     android:gravity="center"
     tools:context=".Controller.QuestionGameActivity">
 
@@ -189,5 +190,28 @@
         android:layout_margin="15sp"
         android:background="#00FFFFFF"
         app:srcCompat="@drawable/ic_setting" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="10dp"
+        android:background="#F6E974"
+        android:fontFamily="@font/b_yekan"
+        android:padding="10dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:ignore="RtlHardcoded" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="10dp"
+        android:text="logout" />
 
 </FrameLayout>

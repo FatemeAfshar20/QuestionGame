@@ -26,6 +26,11 @@
     <string name="radio_hide_check">دکمه های درست و نادرست</string>
     <string name="radio_hide_np">دکمه های قبل و بعد</string>
     <string name="radio_hide_fl">دکمه های رفتن به اولین و آخرین سوال</string>
+
+    <string name="incorrect_input">user name or password can not  empty</string>
+    <string name="incorrect_pass">Password must be Number</string>
+    <string name="incorrect_length">Password must have 8 length and more</string>
+    <string name="invalid_info">Invalid Info</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

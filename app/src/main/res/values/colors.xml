@@ -11,4 +11,5 @@
     <color name="brown">#3E1D28</color>
     <color name="black">#000</color>
     <color name="white">#FFF</color>
+    <color name="red">#ff0000</color>
 </resources>
