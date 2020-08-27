@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Controller.Setting">
+    tools:context=".Controller.Activity.Setting">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -119,6 +119,63 @@
             android:fontFamily="@font/b_yekan"
             android:padding="8sp"
             android:text="@string/set_change_background_txt"
+            android:textColor="@color/beauty_yellow"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_color_text_pl"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/beauty_so_pl"
+            />
+
+        <Button
+            android:id="@+id/btn_color_text_pinkl"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/beauty_pink_light"
+            />
+
+        <Button
+            android:id="@+id/btn_color_text_pink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/beauty_pink"
+            />
+
+        <Button
+            android:id="@+id/btn_color_text_white"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="#FBF6F6" />
+
+        <Button
+            android:id="@+id/btn_color_text_purple"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/beauty_purple_light"
+            />
+
+        <TextView
+            android:id="@+id/change_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/black"
+            android:fontFamily="@font/b_yekan"
+            android:padding="8sp"
+            android:text="@string/set_change_color_txt"
             android:textColor="@color/beauty_yellow"
             android:textSize="15sp" />
     </LinearLayout>

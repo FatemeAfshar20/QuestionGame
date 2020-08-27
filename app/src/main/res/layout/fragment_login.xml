@@ -27,18 +27,19 @@
         android:background="@drawable/user"
         android:padding="10dp"
         />
+
     <EditText
         android:id="@+id/password"
         android:layout_width="308dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:hint="Password"
-        android:fontFamily="@font/b_yekan"
-        android:textSize="18sp"
-        android:textColor="@color/black"
         android:background="@drawable/user"
+        android:fontFamily="@font/b_yekan"
+        android:hint="Password"
+        android:inputType="textPassword"
         android:padding="10dp"
-        />
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
    <com.google.android.material.button.MaterialButton
        android:id="@+id/login"

@@ -19,8 +19,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.questiongame.Controller.CheatActivity;
-import com.example.questiongame.Controller.LoginActivity;
+import com.example.questiongame.Controller.Activity.CheatActivity;
+import com.example.questiongame.Controller.Activity.LoginActivity;
 import com.example.questiongame.Model.Question;
 import com.example.questiongame.Model.UserInfo;
 import com.example.questiongame.R;
@@ -86,7 +86,7 @@ public class QuestionGameFragment extends Fragment {
         findElem(view);
         setListener();
         saveInstance(savedInstanceState);
-        mUserName.setText(mUserInfo.getUserName());
+        //mUserName.setText(mUserInfo.getUserName());
         // Inflate the layout for this fragment
         return view;
     }
@@ -95,7 +95,6 @@ public class QuestionGameFragment extends Fragment {
         if (savedInstanceState != null) {
             Log.d(TAG, "this is question game   " + savedInstanceState);
             mUserInfo=savedInstanceState.getParcelable(BUNDLE_LOGIN_INFO);
-
             mCurIndex = savedInstanceState.getInt(BUNDLE_KEY_CURRENT_INDEX, 0);
             mAnswerNum = savedInstanceState.getInt(BUNDLE_KEY_ANSWER_NUM, 0);
             mScoreNumber = savedInstanceState.getInt(BUNDLE_KEY_SCORE_NUM, 0);
@@ -168,7 +167,7 @@ public class QuestionGameFragment extends Fragment {
         mBtnCheat = view.findViewById(R.id.btn_cheat);
         mBtnSetting=view.findViewById(R.id.btn_setting);
         mMainLay=view.findViewById(R.id.main_lay);
-        mUserName=view.findViewById(R.id.username);
+        mUserName=view.findViewById(R.id.user_name_login);
     }
 
     private void setListener() {

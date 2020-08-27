@@ -1,58 +1,50 @@
-package com.example.questiongame.Controller;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.questiongame.Controller.Fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.opengl.Visibility;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import com.example.questiongame.Model.SettingInfo;
 import com.example.questiongame.R;
 
-import org.w3c.dom.ls.LSException;
-
-public class Setting extends AppCompatActivity {
-    public static final String EXTRA_SETTING_NEW="com.example.questiongame.Controller.Setting Information";
-    private Button mBtnSmall,mBtnLarge,mBtnMedium,mBtnColorPink,mBtnColorPinkL,mBtnColorPurple,mBtnColorPurpleL,mBtnColorWhite;
-    protected RadioButton mRadioHideCheckLay,mRadioHideNPLay,mRadioHideFLLay;
-    private ImageButton mBtnGoBack,mSave;
-    private SettingInfo mSettingInfoMainAct;
+public class SettingListFragment extends Fragment {
+    private static final String EXTRA_SETTING_NEW = "com.example.questiongame.Controller.Fragment.New Setting";
     private SettingInfo mSettingInfo=new SettingInfo();
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
-        findElem();
-        setListener();
+    private Button mBtnSmall,mBtnLarge,mBtnMedium,mBtnColorPink,mBtnColorPinkL,mBtnColorPurple,mBtnColorPurpleL,mBtnColorWhite;
+    private ImageButton mBtnGoBack,mSave;
+
+    public SettingListFragment() {
+        // Required empty public constructor
     }
 
-    private void findElem(){
-        mBtnLarge=findViewById(R.id.btn_large_font);
-        mBtnSmall=findViewById(R.id.btn_small_font);
-        mBtnMedium=findViewById(R.id.btn_medium_font);
-        mBtnColorPink=findViewById(R.id.btn_color_pink);
-        mBtnColorPinkL=findViewById(R.id.btn_color_pinkl);
-        mBtnColorPurple=findViewById(R.id.btn_color_purple);
-        mBtnColorPurpleL=findViewById(R.id.btn_color_pl);
-        mBtnColorWhite=findViewById(R.id.btn_color_white);
-        mBtnGoBack=findViewById(R.id.btn_go_back);
-        mRadioHideCheckLay=findViewById(R.id.radio_hide_check_lay);
-        mRadioHideFLLay=findViewById(R.id.radio_hide_fl_lay);
-        mRadioHideNPLay=findViewById(R.id.radio_hide_np_lay);
-        mSave=findViewById(R.id.save);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view= inflater.inflate(R.layout.activity_setting, container, false);
+        findElem(view);
+        setListener();
+        return view;
     }
 
     private void setListener() {
         mBtnSmall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                        mSettingInfo.setFontSize(14);
+                mSettingInfo.setFontSize(14);
             }
         });
 
@@ -73,14 +65,14 @@ public class Setting extends AppCompatActivity {
         mBtnGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                getActivity().finish();
             }
         });
 
         mBtnColorPink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               mSettingInfo.setColor(getResources().getColor(R.color.beauty_pink));
+                mSettingInfo.setColor(getResources().getColor(R.color.beauty_pink));
             }
         });
 
@@ -108,28 +100,7 @@ public class Setting extends AppCompatActivity {
         mBtnColorWhite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSettingInfo.setColor(getResources().getColor(R.color.white));
-            }
-        });
-
-        mRadioHideNPLay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               mSettingInfo.setLayNP(View.INVISIBLE);
-            }
-        });
-
-        mRadioHideFLLay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mSettingInfo.setLaySS(View.INVISIBLE);
-            }
-        });
-
-        mRadioHideCheckLay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               mSettingInfo.setLayCheck(View.INVISIBLE);
+                mSettingInfo.setColor(getResources().getColor(R.color.black));
             }
         });
 
@@ -141,10 +112,22 @@ public class Setting extends AppCompatActivity {
         });
     }
 
+    private void findElem(View view){
+        mBtnLarge=view.findViewById(R.id.btn_large_font);
+        mBtnSmall=view.findViewById(R.id.btn_small_font);
+        mBtnMedium=view.findViewById(R.id.btn_medium_font);
+        mBtnColorPink=view.findViewById(R.id.btn_color_pink);
+        mBtnColorPinkL=view.findViewById(R.id.btn_color_pinkl);
+        mBtnColorPurple=view.findViewById(R.id.btn_color_purple);
+        mBtnColorPurpleL=view.findViewById(R.id.btn_color_pl);
+        mBtnColorWhite=view.findViewById(R.id.btn_color_white);
+        mBtnGoBack=view.findViewById(R.id.btn_go_back);
+        mSave=view.findViewById(R.id.save);
+    }
+
     public void setNewSetting(){
         Intent intent=new Intent();
         intent.putExtra(EXTRA_SETTING_NEW,mSettingInfo);
-        setResult(RESULT_OK,intent);
+        getActivity().startActivity(intent);
     }
-
 }

@@ -11,21 +11,25 @@ import java.util.Objects;
 public class SettingInfo implements Parcelable {
     private float mFontSize;
     private int mColor;
+    private int mColorText;
     private int mLayNP;
     private int mLaySS;
     private int mLayCheck;
 
     public SettingInfo(Parcel in) {
         this.mColor=in.readInt();
+        this.mColorText=in.readInt();
         this.mFontSize=in.readFloat();
         this.mLayNP =in.readInt();
         this.mLaySS=in.readInt();
         this.mLayCheck=in.readInt();
     }
 
-    public SettingInfo(float fontSize, int color, int layNP, int laySS,int layCheck) {
+
+    public SettingInfo(float fontSize, int color, int colorText, int layNP, int laySS, int layCheck) {
         mFontSize = fontSize;
         mColor = color;
+        mColorText = colorText;
         mLayNP = layNP;
         mLaySS=laySS;
         mLaySS=layCheck;
@@ -49,6 +53,14 @@ public class SettingInfo implements Parcelable {
 
     public void setColor(int color) {
         mColor = color;
+    }
+
+    public int getColorText() {
+        return mColorText;
+    }
+
+    public void setColorText(int colorText) {
+        mColorText = colorText;
     }
 
     public int getLayNP() {
@@ -94,6 +106,7 @@ public class SettingInfo implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.mColor);
+        dest.writeInt(this.mColorText);
         dest.writeFloat(this.mFontSize);
         dest.writeInt(this.mLayNP);
         dest.writeInt(this.mLaySS);

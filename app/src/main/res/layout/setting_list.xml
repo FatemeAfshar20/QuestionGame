@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +9,6 @@
     tools:context=".Controller.Activity.Setting">
 
     <LinearLayout
-        android:id="@+id/font_size_lay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|top"
@@ -68,45 +68,48 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/color_lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:gravity="right"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_color_pl"
+            android:id="@+id/btn_color_text_pl"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@color/beauty_so_pl" />
+            android:background="@color/beauty_so_pl"
+            />
 
         <Button
-            android:id="@+id/btn_color_pinkl"
+            android:id="@+id/btn_color_text_pinkl"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@color/beauty_pink_light" />
+            android:background="@color/beauty_pink_light"
+            />
 
         <Button
-            android:id="@+id/btn_color_pink"
+            android:id="@+id/btn_color_text_pink"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@color/beauty_pink" />
+            android:background="@color/beauty_pink"
+            />
 
         <Button
-            android:id="@+id/btn_color_white"
+            android:id="@+id/btn_color_text_white"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="#FBF6F6" />
 
         <Button
-            android:id="@+id/btn_color_purple"
+            android:id="@+id/btn_color_text_purple"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@color/beauty_purple_light" />
+            android:background="@color/beauty_purple_light"
+            />
 
         <TextView
-            android:id="@+id/change_bg_color"
+            android:id="@+id/change_text_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -116,65 +119,12 @@
             android:background="@color/black"
             android:fontFamily="@font/b_yekan"
             android:padding="8sp"
-            android:text="@string/set_change_background_txt"
+            android:text="@string/set_change_color_txt"
             android:textColor="@color/beauty_yellow"
             android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/hide_lay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="90sp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:gravity="right"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/hide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@color/black"
-            android:fontFamily="@font/b_yekan"
-            android:padding="8sp"
-            android:text="@string/set_change_hidden_state_txt"
-            android:textColor="@color/beauty_yellow"
-            android:textSize="15sp" />
-
-        <RadioButton
-            android:id="@+id/radio_hide_check_lay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/b_yekan"
-            android:text="@string/radio_hide_check"
-            android:textColor="@color/black" />
-
-        <RadioButton
-            android:id="@+id/radio_hide_np_lay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="@font/b_yekan"
-            android:text="@string/radio_hide_np"
-            android:textColor="@color/black" />
-
-        <RadioButton
-            android:id="@+id/radio_hide_fl_lay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="@font/b_yekan"
-            android:text="@string/radio_hide_fl"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/go_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|left"
@@ -187,6 +137,13 @@
             android:layout_gravity="left"
             android:background="#00FFFFFF"
             app:srcCompat="@drawable/ic_go_back" />
-    </FrameLayout>
 
-</FrameLayout>
+        <ImageButton
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/ic_save" />
+
+    </LinearLayout>

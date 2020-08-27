@@ -22,6 +22,7 @@
     <string name="small_font">SMALL</string>
     <string name="set_font_txt">تغییر فونت</string>
     <string name="set_change_background_txt">تغییر پس زمینه</string>
+    <string name="set_change_color_txt">تغییر رنگ فوشته</string>
     <string name="set_change_hidden_state_txt">غیر فعال کردن</string>
     <string name="radio_hide_check">دکمه های درست و نادرست</string>
     <string name="radio_hide_np">دکمه های قبل و بعد</string>

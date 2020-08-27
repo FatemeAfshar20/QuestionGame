@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="right"
     android:gravity="center"
-    tools:context=".Controller.QuestionGameActivity">
+    tools:context=".Controller.Activity.QuestionGameActivity">
 
     <LinearLayout
         android:id="@+id/result"

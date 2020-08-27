@@ -10,8 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.example.questiongame.Controller.QuestionGameActivity;
+import com.example.questiongame.Controller.Activity.QuestionGameActivity;
 import com.example.questiongame.Model.UserInfo;
+import com.example.questiongame.Controller.Activity.QuestionListActivity;
 import com.example.questiongame.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -71,9 +72,11 @@ public class LoginFragment extends Fragment {
     private void setInfo() {
         mUser.setUserName(mUsername.getText().toString());
         mUser.setPassword(mPassword.getText().toString());
-        Intent intent = new Intent(getActivity(), QuestionGameActivity.class);
+/*        Intent intent = new Intent();
         intent.putExtra(EXTRA_LOGIN_INFORMATION, mUser);
-        startActivity(intent);
+        startActivity(intent);*/
+        Intent intent1=new Intent(getActivity(), QuestionListActivity.class);
+        startActivity(intent1);
     }
 
     public void returnSnackbar(View view, int msg) {

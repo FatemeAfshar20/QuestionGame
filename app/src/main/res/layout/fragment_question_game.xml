@@ -7,12 +7,12 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Controller.QuestionGameActivity"
+    tools:context=".Controller.Activity.QuestionGameActivity"
     android:background="#FFF"
     >
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/user_name_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|top"
