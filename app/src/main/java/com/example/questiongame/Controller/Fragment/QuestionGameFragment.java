@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,8 +23,10 @@ import android.widget.Toast;
 import com.example.questiongame.Controller.Activity.CheatActivity;
 import com.example.questiongame.Controller.Activity.LoginActivity;
 import com.example.questiongame.Model.Question;
+import com.example.questiongame.Model.SettingInfo;
 import com.example.questiongame.Model.UserInfo;
 import com.example.questiongame.R;
+import com.example.questiongame.Repository.UserInfoRepository;
 
 public class QuestionGameFragment extends Fragment {
 
@@ -82,11 +85,10 @@ public class QuestionGameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_question_game, container, false);
-        mUserInfo=getActivity().getIntent().getParcelableExtra(LoginFragment.EXTRA_LOGIN_INFORMATION);
+        mUserInfo=getActivity().getIntent().getParcelableExtra(LoginFragment.EXTRA_USER_LOGIN);
         findElem(view);
         setListener();
         saveInstance(savedInstanceState);
-        //mUserName.setText(mUserInfo.getUserName());
         // Inflate the layout for this fragment
         return view;
     }
@@ -95,6 +97,7 @@ public class QuestionGameFragment extends Fragment {
         if (savedInstanceState != null) {
             Log.d(TAG, "this is question game   " + savedInstanceState);
             mUserInfo=savedInstanceState.getParcelable(BUNDLE_LOGIN_INFO);
+
             mCurIndex = savedInstanceState.getInt(BUNDLE_KEY_CURRENT_INDEX, 0);
             mAnswerNum = savedInstanceState.getInt(BUNDLE_KEY_ANSWER_NUM, 0);
             mScoreNumber = savedInstanceState.getInt(BUNDLE_KEY_SCORE_NUM, 0);
@@ -126,18 +129,10 @@ public class QuestionGameFragment extends Fragment {
             Log.d(TAG, "is null!   " + savedInstanceState);
     }
 
-    public void fragmentResult(){
-        Bundle b = getArguments();
-        if(b!=null) {
-            boolean isCheat = b.getBoolean(CheatFragment.EXTRA_IS_CHEAT);
-            mQuestions[mCurIndex].setCheat(isCheat);
-        }
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-       if (resultCode != Activity.RESULT_OK || data == null)
+        if (resultCode != Activity.RESULT_OK || data == null)
             return;
         if (requestCode == REQUEST_CODE_CHEAT) {
             mIsCheat = data.getBooleanExtra(CheatFragment.EXTRA_IS_CHEAT, false);
@@ -167,7 +162,8 @@ public class QuestionGameFragment extends Fragment {
         mBtnCheat = view.findViewById(R.id.btn_cheat);
         mBtnSetting=view.findViewById(R.id.btn_setting);
         mMainLay=view.findViewById(R.id.main_lay);
-        mUserName=view.findViewById(R.id.user_name_login);
+        mUserName=view.findViewById(R.id.user_name);
+//        mUserName.setText(mUserInfo.getUserName());
     }
 
     private void setListener() {
@@ -235,7 +231,7 @@ public class QuestionGameFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(), CheatActivity.class);
                 intent.putExtra(EXTRA_QUESTION_ANSWER,mQuestions[mCurIndex].isAnswer());
-               startActivityForResult(intent,REQUEST_CODE_CHEAT);
+                startActivityForResult(intent,REQUEST_CODE_CHEAT);
             }
         });
 
@@ -243,8 +239,19 @@ public class QuestionGameFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), LoginActivity.class);
-                intent.putExtra(EXTRA_LOGIN_INFO,mUserInfo);
+                intent.putExtra(EXTRA_LOGIN_INFO, UserInfoRepository.getInstance().getUserInfo());
                 startActivity(intent);
+            }
+        });
+
+        mBtnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SettingInfo settingInfo=new SettingInfo(mTextView.getTextSize(),mMainLay.getSolidColor(),mTextView.getSolidColor(),
+                        mNextPrevLay.getVisibility(),mFirstLastLay.getVisibility(),mCheckLay.getVisibility());
+                Intent intent=new Intent(getActivity(), Settings.class);
+                intent.putExtra(EXTRA_SETTING, settingInfo);
+                startActivityForResult(intent,REQUEST_CODE_SETTING);
             }
         });
 

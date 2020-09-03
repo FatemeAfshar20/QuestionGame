@@ -15,7 +15,7 @@
         android:src="@drawable/ic_user" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/user_name"
         android:layout_width="308dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -24,7 +24,7 @@
         android:fontFamily="@font/b_yekan"
         android:textSize="18sp"
         android:textColor="@color/black"
-        android:background="@drawable/user"
+        android:background="@drawable/border_red"
         android:padding="10dp"
         />
 
@@ -33,21 +33,38 @@
         android:layout_width="308dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:background="@drawable/user"
+        android:background="@drawable/border_red"
         android:fontFamily="@font/b_yekan"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="10dp"
         android:textColor="@color/black"
         android:textSize="18sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        >
 
-   <com.google.android.material.button.MaterialButton
-       android:id="@+id/login"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Login"
-       android:textStyle="bold"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textStyle="bold"
+            />
 
-       />
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:id="@+id/sign_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

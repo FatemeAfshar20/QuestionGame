@@ -6,6 +6,8 @@ import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.questiongame.R;
+
 import java.util.Objects;
 
 public class SettingInfo implements Parcelable {
@@ -56,7 +58,7 @@ public class SettingInfo implements Parcelable {
     }
 
     public int getColorText() {
-        return mColorText;
+        return R.color.black;
     }
 
     public void setColorText(int colorText) {

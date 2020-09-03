@@ -1,6 +1,5 @@
 package com.example.questiongame.Controller.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,16 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
 
 import com.example.questiongame.Model.SettingInfo;
 import com.example.questiongame.R;
 
 public class SettingListFragment extends Fragment {
-    private static final String EXTRA_SETTING_NEW = "com.example.questiongame.Controller.Fragment.New Setting";
-    private SettingInfo mSettingInfo=new SettingInfo();
+    public static SettingInfo sSettingInfo=new SettingInfo();
     private Button mBtnSmall,mBtnLarge,mBtnMedium,mBtnColorPink,mBtnColorPinkL,mBtnColorPurple,mBtnColorPurpleL,mBtnColorWhite;
-    private ImageButton mBtnGoBack,mSave;
+    private ImageButton mBtnGoBack;
 
     public SettingListFragment() {
         // Required empty public constructor
@@ -50,28 +47,27 @@ public class SettingListFragment extends Fragment {
         mBtnColorPurpleL=view.findViewById(R.id.btn_color_text_pl);
         mBtnColorWhite=view.findViewById(R.id.btn_color_text_white);
         mBtnGoBack=view.findViewById(R.id.btn_go_back);
-        mSave=view.findViewById(R.id.save);
     }
 
     private void setListener() {
         mBtnSmall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSettingInfo.setFontSize(14);
+                sSettingInfo.setFontSize(14);
             }
         });
 
         mBtnLarge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSettingInfo.setFontSize(26);
+                sSettingInfo.setFontSize(26);
             }
         });
 
         mBtnMedium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSettingInfo.setFontSize(18);
+                sSettingInfo.setFontSize(18);
             }
         });
 
@@ -85,49 +81,38 @@ public class SettingListFragment extends Fragment {
         mBtnColorPink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSettingInfo.setColor(getResources().getColor(R.color.beauty_pink));
+                sSettingInfo.setColorText(getResources().getColor(R.color.beauty_pink));
             }
         });
 
         mBtnColorPurpleL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSettingInfo.setColor(getResources().getColor(R.color.beauty_so_pl));
+                sSettingInfo.setColorText(getResources().getColor(R.color.beauty_so_pl));
             }
         });
 
         mBtnColorPurple.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSettingInfo.setColor(getResources().getColor(R.color.beauty_purple_light));
+                sSettingInfo.setColorText(getResources().getColor(R.color.beauty_purple_light));
             }
         });
 
         mBtnColorPinkL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSettingInfo.setColor(getResources().getColor(R.color.beauty_pink_light));
+                sSettingInfo.setColorText(getResources().getColor(R.color.beauty_pink_light));
             }
         });
 
         mBtnColorWhite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSettingInfo.setColor(getResources().getColor(R.color.black));
+                sSettingInfo.setColorText(getResources().getColor(R.color.black));
             }
         });
 
-        mSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setNewSetting();
-            }
-        });
     }
 
-    public void setNewSetting(){
-        Intent intent=new Intent();
-        intent.putExtra(EXTRA_SETTING_NEW,mSettingInfo);
-        getActivity().startActivity(intent);
-    }
 }

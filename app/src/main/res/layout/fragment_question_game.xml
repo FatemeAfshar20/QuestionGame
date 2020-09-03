@@ -11,8 +11,8 @@
     android:background="#FFF"
     >
 
-    <TextView
-        android:id="@+id/user_name_login"
+<!--    <TextView
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|top"
@@ -23,7 +23,7 @@
         android:fontFamily="@font/b_yekan"
         android:textSize="20sp"
         android:textColor="@color/black"
-        tools:ignore="RtlHardcoded" />
+        tools:ignore="RtlHardcoded" />-->
 
     <LinearLayout
         android:id="@+id/result"

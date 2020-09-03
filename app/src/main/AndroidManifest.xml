@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controller.Activity.SettingListActivity"></activity>
+        <activity android:name=".Controller.Activity.SettingListActivity" />
         <activity android:name=".Controller.Activity.QuestionListActivity" />
         <activity android:name=".Controller.Activity.SignInActivity" />
         <activity android:name=".Controller.Activity.QuestionGameActivity" />

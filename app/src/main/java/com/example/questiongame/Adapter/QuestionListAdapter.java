@@ -16,6 +16,7 @@ import com.example.questiongame.Controller.Activity.QuestionGameActivity;
 import com.example.questiongame.Controller.Activity.Setting;
 import com.example.questiongame.Controller.Activity.SettingListActivity;
 import com.example.questiongame.Controller.Fragment.QuestionGameFragment;
+import com.example.questiongame.Controller.Fragment.SettingListFragment;
 import com.example.questiongame.Model.Question;
 import com.example.questiongame.Model.SettingInfo;
 import com.example.questiongame.R;
@@ -50,7 +51,7 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
 
     class Holder extends RecyclerView.ViewHolder {
 
-        private TextView mQuestionText,mColorText;
+        private TextView mQuestionText;
         private CheckBox mAnswer;
         private ImageButton mBtnSetting;
         private SettingInfo mSettingInfo;
@@ -87,6 +88,7 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
             //mColorText.setText(setting.getColorText());
             mAnswer.setChecked(question.answerCheck());
             mAnswer.setEnabled(false);
+            mQuestionText.setTextColor(mContext.getResources().getColor(SettingListFragment.sSettingInfo.getColorText()));
         }
 
     }
